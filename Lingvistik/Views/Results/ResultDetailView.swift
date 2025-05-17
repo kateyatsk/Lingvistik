@@ -13,7 +13,11 @@ struct ResultDetailView: View {
     let result: TestResult
     
     var partAStats: (total: Int, correct: Int, partial: Int, wrong: Int) {
-        let ids = result.allQuestionIDs.filter { $0.lowercased().starts(with: "a") }
+        let ids = result.allQuestionIDs.filter { id in
+            guard let first = id.first else { return false }
+            let letter = String(first).lowercased()
+            return letter == "a" || letter == "а"
+        }
         let filtered = ids.filter { result.questionTypesById?[$0] != "text" }
         
         var correct = 0
@@ -27,7 +31,7 @@ struct ResultDetailView: View {
             
             if userAnswer == nil {
                 correct += 1
-            } else if result.language == "Русский язык", type == "multi" {
+            } else if (result.language == "Русский язык" || result.language == "Белорусский язык") && type == "multi" {
                 let selected = Set(userAnswer!.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) })
                 
                 if !selected.isEmpty,
@@ -47,14 +51,10 @@ struct ResultDetailView: View {
     
     var partBStats: (total: Int, correct: Int, wrong: Int) {
         let ids = result.allQuestionIDs.filter { $0.lowercased().starts(with: "b") }
-//        let filtered = ids.filter {
-//            guard let type = result.questionTypesById?[$0] else { return false }
-//            return type != "text"
-//        }
-
+        
         var correct = 0
         var wrong = 0
-
+        
         for id in ids {
             if result.answers[id] == nil {
                 correct += 1
@@ -62,7 +62,7 @@ struct ResultDetailView: View {
                 wrong += 1
             }
         }
-
+        
         return (ids.count, correct, wrong)
     }
     
@@ -81,7 +81,7 @@ struct ResultDetailView: View {
                     Chart {
                         BarMark(x: .value("Тип", "✅ Верно"), y: .value("Количество", partAStats.correct))
                             .foregroundStyle(.green)
-                        if result.language == "Русский язык" {
+                        if result.language == "Русский язык" || result.language == "Белорусский язык" {
                             BarMark(x: .value("Тип", "🟡 Частично"), y: .value("Количество", partAStats.partial))
                                 .foregroundStyle(.orange)
                         }
@@ -124,7 +124,8 @@ struct ResultDetailView: View {
                             if let answer = result.answers[id] {
                                 let selected = Set(answer.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) })
                                 let correct = Set(result.correctOptionsById?[id] ?? [])
-                                let isPartial = result.language == "Русский язык" &&
+                                let isPartial = (result.language == "Русский язык" ||
+                                result.language == "Белорусский язык") &&
                                 result.questionTypesById?[id] == "multi" &&
                                 !selected.isEmpty &&
                                 selected.isSubset(of: correct) &&

@@ -28,6 +28,7 @@ struct LanguageSelectionView: View {
          Spacer()
             ForEach(viewModel.languages, id: \.self) { language in
                 LanguageButton(language: language, isSelected: viewModel.selectedLanguage == language)
+                    .contentShape(RoundedRectangle(cornerRadius: 12))
                     .onTapGesture {
                         viewModel.selectedLanguage = language
                     }

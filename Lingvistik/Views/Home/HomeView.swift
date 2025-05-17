@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct HomeView: View {
     @EnvironmentObject private var userSettings: UserSettings
     @EnvironmentObject private var authManager: AuthenticationManager
@@ -93,6 +92,8 @@ struct HomeView: View {
                     
                 }
                 
+            }.onChange(of: userSettings.selectedLanguage) { _ in
+                path = NavigationPath() 
             }
             .navigationDestination(for: Path.self) { route in
                 switch route {

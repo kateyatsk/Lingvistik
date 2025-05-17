@@ -30,6 +30,7 @@ struct RulesView: View {
         case .english: fileName = "english_rules"
         case .french: fileName = "french_rules"
         case .german: fileName = "german_rules"
+        case .belarusian: fileName = "belarusian_rules"
         }
 
         if let url = Bundle.main.url(forResource: fileName, withExtension: "pdf"),

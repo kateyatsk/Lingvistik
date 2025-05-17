@@ -44,6 +44,8 @@
 		B170F1C92DCF6FD9002F29FD /* ResultSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B170F1C82DCF6FD9002F29FD /* ResultSummaryView.swift */; };
 		B170F1CC2DCF73E2002F29FD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = B170F1CB2DCF73E2002F29FD /* AlertToast */; };
 		B170F1CF2DCFABEC002F29FD /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B170F1CE2DCFABEC002F29FD /* BookmarksView.swift */; };
+		B17641F42DD6FEFE0088E3DD /* belarusian_rules.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B17641F32DD6FEFE0088E3DD /* belarusian_rules.pdf */; };
+		B17641F62DD706760088E3DD /* Bel.json in Resources */ = {isa = PBXBuildFile; fileRef = B17641F52DD706580088E3DD /* Bel.json */; };
 		B178E89F2DC7778600275BFF /* RemoteTestVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B178E89E2DC7778600275BFF /* RemoteTestVariant.swift */; };
 		B178E8A12DC778F300275BFF /* TestViewLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B178E8A02DC778F300275BFF /* TestViewLoader.swift */; };
 		B1A22FD72DB1684B00952E36 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A22FD62DB1684B00952E36 /* MainTabView.swift */; };
@@ -111,6 +113,8 @@
 		B170F1B52DCF597A002F29FD /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 		B170F1C82DCF6FD9002F29FD /* ResultSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSummaryView.swift; sourceTree = "<group>"; };
 		B170F1CE2DCFABEC002F29FD /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		B17641F32DD6FEFE0088E3DD /* belarusian_rules.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = belarusian_rules.pdf; sourceTree = "<group>"; };
+		B17641F52DD706580088E3DD /* Bel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Bel.json; sourceTree = "<group>"; };
 		B178E89E2DC7778600275BFF /* RemoteTestVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTestVariant.swift; sourceTree = "<group>"; };
 		B178E8A02DC778F300275BFF /* TestViewLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewLoader.swift; sourceTree = "<group>"; };
 		B18F46BE2DA6709E0007A8F7 /* Lingvistik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lingvistik.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +170,7 @@
 		B10B39C72D65CDC900BB97A8 /* Lingvistik */ = {
 			isa = PBXGroup;
 			children = (
+				B17641F52DD706580088E3DD /* Bel.json */,
 				B170F1BA2DCF610E002F29FD /* App */,
 				B170F1B72DCF6080002F29FD /* Core */,
 				B1A22FD82DB18DD400952E36 /* Navigation */,
@@ -263,6 +268,7 @@
 				B170F1AE2DCF5785002F29FD /* french_rules.pdf */,
 				B170F1AF2DCF5785002F29FD /* german_rules.pdf */,
 				B170F1B02DCF5785002F29FD /* russian_rules.pdf */,
+				B17641F32DD6FEFE0088E3DD /* belarusian_rules.pdf */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -540,6 +546,8 @@
 				B10B39EF2D65F23C00BB97A8 /* KottaOne-Regular.ttf in Resources */,
 				B1EABB582DA7E6E600407568 /* GoogleService-Info.plist in Resources */,
 				B10B39F42D66039700BB97A8 /* MontserratAlternates-Bold.ttf in Resources */,
+				B17641F62DD706760088E3DD /* Bel.json in Resources */,
+				B17641F42DD6FEFE0088E3DD /* belarusian_rules.pdf in Resources */,
 				B10B39D02D65CDCB00BB97A8 /* Preview Assets.xcassets in Resources */,
 				B10B39DB2D65D7A200BB97A8 /* LogoAnimation.json in Resources */,
 				B10B39F22D66038900BB97A8 /* MontserratAlternates-Regular.ttf in Resources */,

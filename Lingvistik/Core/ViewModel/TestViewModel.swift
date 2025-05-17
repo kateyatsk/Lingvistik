@@ -153,7 +153,7 @@ final class TestViewModel: ObservableObject {
     }
     
     func partialCount(for result: TestResult) -> Int {
-        guard result.language == "Русский язык",
+        guard result.language == "Русский язык" || result.language == "Белорусский язык",
               let correctMap = result.correctOptionsById,
               let types = result.questionTypesById else { return 0 }
 
@@ -177,6 +177,9 @@ final class TestViewModel: ObservableObject {
         }
 
         return partial
+    }
+    deinit {
+        print("TestViewModel deallocated")
     }
 }
 

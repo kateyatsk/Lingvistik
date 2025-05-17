@@ -16,17 +16,14 @@ struct ResultsView: View {
     private var filteredResults: [TestResult] {
         var results = viewModel.results
 
-        // Фильтрация по языку
         if selectedLanguageFilter != "Все" {
             results = results.filter { $0.language == selectedLanguageFilter }
         }
 
-        // Поиск по названию языка
         if !searchText.isEmpty {
             results = results.filter { $0.language.lowercased().contains(searchText.lowercased()) }
         }
-
-        // Сортировка
+        
         switch sortOption {
         case .byDate:
             results = results.sorted(by: { $0.timestamp > $1.timestamp })
@@ -125,7 +122,6 @@ struct ResultsView: View {
     }
 }
 
-// MARK: - Sorting Options
 enum SortOption: String, CaseIterable {
     case byDate
     case byAccuracy

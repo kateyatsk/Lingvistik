@@ -9,6 +9,7 @@ import Foundation
 
 enum Language: String, CaseIterable {
     case russian = "Русский"
+    case belarusian = "Белорусский"
     case english = "Английский"
     case french = "Французский"
     case german = "Немецкий"
@@ -16,6 +17,7 @@ enum Language: String, CaseIterable {
     var flagName: String {
         switch self {
         case .russian: return "russianFlag"
+        case .belarusian: return "belarusianFlag"
         case .english: return "englishFlag"
         case .french: return "frenchFlag"
         case .german: return "germanFlag"

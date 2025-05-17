@@ -26,6 +26,8 @@ private struct MultipleChoiceView: View {
                     Text(.init(option.text))
                         .font(.custom("MontserratAlternates-Medium", size: 16))
                         .foregroundColor(.primary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
                     
                     Spacer()
                     
@@ -35,6 +37,7 @@ private struct MultipleChoiceView: View {
                     }
                 }
                 .padding()
+                .frame(maxWidth: .infinity, alignment: .center)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(
@@ -105,13 +108,18 @@ struct TestView: View {
     @State private var hasSeenTextQuestion = false
     @State private var isBookmarked = false
     @State private var showBookmarkToast = false
+    @State private var bookmarkTask: Task<Void, Never>? = nil
     
     var body: some View {
         if let test = viewModel.test {
             content(test: test)
+                .onDisappear {
+                    bookmarkTask?.cancel()
+                }
         } else {
             ProgressView("Загрузка теста...")
         }
+        
     }
     
     @ViewBuilder
@@ -182,7 +190,8 @@ struct TestView: View {
                         }
                         Spacer()
                         Button {
-                            Task {
+                            bookmarkTask?.cancel()
+                            bookmarkTask = Task {
                                 await toggleBookmark(question, test: test)
                             }
                         } label: {
@@ -332,7 +341,7 @@ struct TestView: View {
                     variant: test.variant,
                     for: userId,
                     userTextAnswer: viewModel.textAnswers[question.id],
-                    userSelectedOptions: viewModel.selectedOptions[question.id]?.map(\ .text) ?? []
+                    userSelectedOptions: viewModel.selectedOptions[question.id]?.map(\.text) ?? []
                 )
                 await MainActor.run {
                     isBookmarked = true
@@ -340,7 +349,7 @@ struct TestView: View {
                 }
             }
         } catch {
-            print("❌ Ошибка при переключении закладки: \(error)")
+            print("Ошибка при переключении закладки: \(error)")
         }
     }
     
@@ -357,13 +366,14 @@ struct TestView: View {
                 isBookmarked = snapshot.exists
             }
         } catch {
-            print("❌ Ошибка при проверке закладки: \(error)")
+            print("Ошибка при проверке закладки: \(error)")
             await MainActor.run {
                 isBookmarked = false
             }
         }
     }
 }
+
 
 
 

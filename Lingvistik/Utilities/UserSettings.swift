@@ -17,16 +17,15 @@ class UserSettings: ObservableObject {
     @Published var selectedVariant: Int? 
 
     init() {
-        // Восстановление языка
+
         if let rawValue = UserDefaults.standard.string(forKey: "selectedLanguage"),
            let language = Language(rawValue: rawValue) {
             selectedLanguage = language
         }
 
-        // Восстановление варианта
         selectedVariant = UserDefaults.standard.integer(forKey: "selectedVariant")
         if UserDefaults.standard.object(forKey: "selectedVariant") == nil {
-            selectedVariant = nil // чтобы отличить 0 от отсутствия
+            selectedVariant = nil
         }
     }
 }

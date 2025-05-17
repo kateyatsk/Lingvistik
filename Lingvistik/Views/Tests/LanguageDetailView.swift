@@ -20,6 +20,7 @@ struct LanguageDetailView: View {
             
             VStack {
                 Image("boy")
+
                 HStack {
                     Text("Выберите ")
                         .font(.custom("MontserratAlternates-Medium", size: 24))
@@ -51,6 +52,7 @@ struct LanguageDetailView: View {
                             }
                                 .padding()
                         )
+                        .contentShape(RoundedRectangle(cornerRadius: 12))
                         .onTapGesture {
                             userSettings.selectedVariant = nil
                             path.append(HomeView.Path.testView)
@@ -73,7 +75,7 @@ struct LanguageDetailView: View {
                                     .foregroundColor(.darkAccent)
                                 
                                 
-                            }
+                            }.contentShape(RoundedRectangle(cornerRadius: 12))
                                 .onTapGesture {
                                     path.append(HomeView.Path.chooseVariant)
                                 }
@@ -102,6 +104,3 @@ struct LanguageDetailView: View {
     }
 }
 
-//#Preview {
-//    LanguageDetailView(path: $path, language: "Русский")
-//}

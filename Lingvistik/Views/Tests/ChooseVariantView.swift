@@ -41,7 +41,7 @@ struct ChooseVariantView: View {
                         .multilineTextAlignment(.center)
                         .padding(.top, 8)
                     Text("Язык: \(language)")
-                        .font(.custom("MontserratAlternates-SemiBold", size: 16))
+                        .font(.custom("MontserratAlternates-Bold", size: 16))
                         .foregroundColor(.gray)
 
                     LazyVGrid(columns: columns, spacing: 20) {
@@ -88,7 +88,6 @@ struct ChooseVariantView: View {
                 let db = Firestore.firestore()
                 let firestoreLanguage = language + " язык"
 
-                // Загружаем все доступные варианты
                 let snapshot = try await db.collection("tests")
                     .whereField("language", isEqualTo: firestoreLanguage)
                     .getDocuments()

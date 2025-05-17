@@ -5,7 +5,6 @@
 //  Created by Екатерина Яцкевич on 4.05.25.
 //
 
-
 import SwiftUI
 
 struct TestViewLoader: View {
@@ -14,6 +13,7 @@ struct TestViewLoader: View {
 
     @StateObject private var viewModel = TestViewModel()
     @State private var error: String? = nil
+    @State private var loadingTask: Task<Void, Never>? = nil
 
     var body: some View {
         Group {
@@ -28,8 +28,14 @@ struct TestViewLoader: View {
         }
         .task {
             if viewModel.test == nil {
-                await loadTest()
+                loadingTask?.cancel()
+                loadingTask = Task {
+                    await loadTest()
+                }
             }
+        }
+        .onDisappear {
+            loadingTask?.cancel()
         }
     }
 

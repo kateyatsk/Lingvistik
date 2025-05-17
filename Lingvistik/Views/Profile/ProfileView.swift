@@ -157,11 +157,9 @@ struct ProfileView: View {
                         Text("Вы уверены, что хотите выйти из аккаунта?")
                     }
                 }
-                .onAppear {
+                .task {
                     loadAvatar()
-                    Task {
-                        await loadResults()
-                    }
+                    await loadResults()
                 }
                 .padding()
             }
